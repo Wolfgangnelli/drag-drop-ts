@@ -108,7 +108,14 @@ class ProjectList {
         this.element.id = `${this.type}-projects`;
 
         projectState.addListener((projects: Project[]) => {
-            this.assignedProjects = projects;
+            //filtering projects
+            const relevantProject = projects.filter(proj => {
+                if(this.type === 'active') {
+                    return proj.status === ProjectStatus.Acitve;
+                }
+                    return proj.status === ProjectStatus.Finished;
+            });
+            this.assignedProjects = relevantProject;
             this.renderProject();
         });
 
@@ -118,6 +125,8 @@ class ProjectList {
 
     private renderProject() {
         const listEl = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
+        //clear the node before re-rendering
+        listEl.innerHTML = '';
         for (const prjItem of this.assignedProjects) {
             const listItem = document.createElement('li');
             listItem.textContent = prjItem.title;
@@ -183,7 +192,7 @@ class ProjectInput {
     }
 
     private gatherUserInput(): [string, string, number] | void {
-       const enteredTitle = this.titleInputElement.value;
+       const enteredTitle = this.titleInputElement.value.charAt(0).toUpperCase() + this.titleInputElement.value.substring(1);
        const enteredDescription = this.descriptionInputElement.value;
        const enteredPeople = this.peopleInputElement.value;
 

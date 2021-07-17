@@ -77,7 +77,13 @@ var ProjectList = (function () {
         this.element = importedNode.firstElementChild;
         this.element.id = this.type + "-projects";
         projectState.addListener(function (projects) {
-            _this.assignedProjects = projects;
+            var relevantProject = projects.filter(function (proj) {
+                if (_this.type === 'active') {
+                    return proj.status === ProjectStatus.Acitve;
+                }
+                return proj.status === ProjectStatus.Finished;
+            });
+            _this.assignedProjects = relevantProject;
             _this.renderProject();
         });
         this.attach();
@@ -85,6 +91,7 @@ var ProjectList = (function () {
     }
     ProjectList.prototype.renderProject = function () {
         var listEl = document.getElementById(this.type + "-projects-list");
+        listEl.innerHTML = '';
         for (var _i = 0, _a = this.assignedProjects; _i < _a.length; _i++) {
             var prjItem = _a[_i];
             var listItem = document.createElement('li');
@@ -127,7 +134,7 @@ var ProjectInput = (function () {
         this.attach();
     }
     ProjectInput.prototype.gatherUserInput = function () {
-        var enteredTitle = this.titleInputElement.value;
+        var enteredTitle = this.titleInputElement.value.charAt(0).toUpperCase() + this.titleInputElement.value.substring(1);
         var enteredDescription = this.descriptionInputElement.value;
         var enteredPeople = this.peopleInputElement.value;
         var titleValidatable = {
