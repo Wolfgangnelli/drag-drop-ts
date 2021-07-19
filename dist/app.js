@@ -160,8 +160,21 @@ var ProjectList = (function (_super) {
         _this.renderContent();
         return _this;
     }
+    ProjectList.prototype.dragOverHandler = function (_) {
+        var listEl = this.element.querySelector('ul');
+        listEl.classList.add('droppable');
+    };
+    ProjectList.prototype.dropHandler = function (_) {
+    };
+    ProjectList.prototype.dragLeaveHandler = function (_) {
+        var listEl = this.element.querySelector('ul');
+        listEl === null || listEl === void 0 ? void 0 : listEl.classList.remove('droppable');
+    };
     ProjectList.prototype.configure = function () {
         var _this = this;
+        this.element.addEventListener('dragover', this.dragOverHandler);
+        this.element.addEventListener('drop', this.dropHandler);
+        this.element.addEventListener('dragleave', this.dragLeaveHandler);
         projectState.addListener(function (projects) {
             var relevantProject = projects.filter(function (proj) {
                 if (_this.type === 'active') {
@@ -187,6 +200,15 @@ var ProjectList = (function (_super) {
             new ProjectItem(listEl.id, prjItem);
         }
     };
+    __decorate([
+        Autobind
+    ], ProjectList.prototype, "dragOverHandler", null);
+    __decorate([
+        Autobind
+    ], ProjectList.prototype, "dropHandler", null);
+    __decorate([
+        Autobind
+    ], ProjectList.prototype, "dragLeaveHandler", null);
     return ProjectList;
 }(Component));
 function Autobind(_, _2, descriptor) {
