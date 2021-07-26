@@ -314,6 +314,7 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
 
     renderContent() {};
 
+  
     private gatherUserInput(): [string, string, number] | void {
        const enteredTitle = this.titleInputElement.value.charAt(0).toUpperCase() + this.titleInputElement.value.substring(1);
        const enteredDescription = this.descriptionInputElement.value;
