@@ -1,5 +1,4 @@
-namespace App {
-    /**
+/**
  * Component Base Class - Generic class
  */
 export abstract class Component<T extends HTMLElement, U extends HTMLElement> {
@@ -29,4 +28,3 @@ export abstract class Component<T extends HTMLElement, U extends HTMLElement> {
    abstract renderContent(): void;
 }
 
-}

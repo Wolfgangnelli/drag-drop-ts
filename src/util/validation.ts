@@ -1,4 +1,4 @@
-namespace App {
+
 /**
  * Validation
  */
@@ -30,4 +30,3 @@ export function validate(validatableInput: Validatable): boolean {
     return isValid;
 }
 
-}

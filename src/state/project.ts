@@ -1,5 +1,7 @@
-namespace App {
-    // Generic type Listener
+import {Project, ProjectStatus} from '../models/project.js';
+
+
+// Generic type Listener
 type Listener<T> = (items: T[]) => void;
 
 /**
@@ -66,4 +68,3 @@ export class ProjectState extends State<Project> {
 }
 // Global constant singleton instance of project state
 export const projectState = ProjectState.getInstance();
-}

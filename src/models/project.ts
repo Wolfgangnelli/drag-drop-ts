@@ -1,4 +1,4 @@
-namespace App {
+
 export enum ProjectStatus {Acitve, Finished};
 
 /**
@@ -8,4 +8,3 @@ export enum ProjectStatus {Acitve, Finished};
     constructor(public id: string, public title: string, public description: string, public people: number, public status: ProjectStatus) {}
 }
 
-}
