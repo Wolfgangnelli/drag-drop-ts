@@ -1,15 +1,12 @@
-/**
- * Autobind decorator method
- */
- export function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+export function Autobind(_, _2, descriptor) {
     const originalMethod = descriptor.value;
-    const adjDescriptor: PropertyDescriptor = {
+    const adjDescriptor = {
         configurable: true,
         get() {
             const boundFun = originalMethod.bind(this);
             return boundFun;
         }
-    }
+    };
     return adjDescriptor;
 }
-
+//# sourceMappingURL=autobind.js.map
